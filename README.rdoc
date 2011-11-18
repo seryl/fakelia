@@ -1,6 +1,13 @@
 = fakelia
 
-Description goes here.
+Fakelia is a convience tool for sending gmetric data to Ganglia from Linux, Windows, or OSX.
+
+The general idea was to make a simple daemon that allowed you to generate custom graphs in ganglia, in an extremely trivial manner.
+
+== TODO
+
+* Setup daemon libraries for both windows and linux.
+* Finish out the spec helpers!
 
 == Contributing to fakelia
  
