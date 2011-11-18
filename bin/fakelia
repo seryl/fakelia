@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'mixlib/cli'
+require 'fakelia'
+
+class FakeliaCLI
+  include Mixlib::CLI
+  
+  option :config_file,
+    :short => "-c CONFIG",
+    :long => "--config CONFIG",
+    :default => nil,
+    :description => "The json configuration file to use"
+  
+  option :help,
+    :short => "-h",
+    :long => "--help",
+    :description => "Show this message",
+    :on => :tail,
+    :boolean => true,
+    :show_options => true,
+    :exit => 0
+    
+end
+
+cli = FakeliaCLI.new
+cli.parse_options
+
+Fakelia::Application.new(cli.config[:config_file])
