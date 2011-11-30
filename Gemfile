@@ -7,7 +7,6 @@ gem "gmetric"
 gem "eventmachine"
 gem "activesupport"
 gem "mixlib"
-gem "i18n"
 
 if RUBY_PLATFORM =~ /mswin32/
   gem "win32-service"
