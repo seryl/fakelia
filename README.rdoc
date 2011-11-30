@@ -23,4 +23,3 @@ The general idea was to make a simple daemon that allowed you to generate custom
 
 Copyright (c) 2011 Josh Toft. See LICENSE.txt for
 further details.
-

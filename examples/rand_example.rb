@@ -8,7 +8,7 @@ module Fakelia::Scripts
     end
     
     # Send random data.
-    def self.update
+    def self.update      
       rand(150)
     end
   end

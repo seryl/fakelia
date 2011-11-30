@@ -27,4 +27,24 @@ end
 cli = FakeliaCLI.new
 cli.parse_options
 
-Fakelia::Application.new(cli.config[:config_file])
+if RUBY_PLATFORM =~ /win32/
+  require 'win32/daemon'
+  include Win32
+  
+  class Daemon
+    def service_main
+      while running?
+        sleep 3
+        Fakelia::Application.new(cli.config[:config_file])
+      end
+    end
+    
+    def service_stop
+      exit!
+    end
+  end
+  Daemon.mainloop
+  
+else # Linux, OSX, etc.
+  Fakelia::Application.new(cli.config[:config_file])
+end
