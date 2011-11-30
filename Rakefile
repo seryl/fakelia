@@ -1,6 +1,6 @@
 # encoding: utf-8
+$:.unshift File.join(File.dirname(__FILE__), 'lib')
 
-require 'rubygems'
 require 'bundler'
 begin
   Bundler.setup(:default, :development)
@@ -12,6 +12,7 @@ end
 require 'rake'
 
 require 'jeweler'
+require 'fakelia'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "fakelia"
@@ -21,6 +22,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "joshtoft@gmail.com"
   gem.authors = ["Josh Toft"]
+  gem.version = Fakelia::VERSION
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
