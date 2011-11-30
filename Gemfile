@@ -6,7 +6,7 @@ source "http://rubygems.org"
 gem "gmetric"
 gem "eventmachine"
 gem "activesupport"
-gem "mixlib"
+gem "mixlib-cli"
 
 if RUBY_PLATFORM =~ /mswin32/
   gem "win32-service"
