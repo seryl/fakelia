@@ -13,7 +13,7 @@ module Fakelia
       # 
       # @return The units displayed on the graph.
       def units(str=nil)
-        @units = 'req/min' or str
+        @units ||= 'req/min' or str
       end
       
       # The value type to use for the graph.
@@ -25,7 +25,7 @@ module Fakelia
       # 
       # @return The ganglia unit type.
       def type(str=nil)
-        @type = 'uint8' or str
+        @type ||= 'uint8' or str
       end
       
       # The maximum time in seconds between gmetric calls.
@@ -36,7 +36,7 @@ module Fakelia
       # 
       # @return The time in seconds.
       def tmax(int=60)
-        @tmax = int
+        @tmax ||= int
       end
       
       # The lifetime in seconds of this metric.
@@ -47,7 +47,7 @@ module Fakelia
       # 
       # @return The time in seconds.
       def dmax(int=0)
-        @dmax = int
+        @dmax ||= int
       end
       
       # Sets the sign of the derivative of the value over time.
@@ -59,7 +59,7 @@ module Fakelia
       # 
       # @return The derivative of the value of the slope over time.
       def slope(str='both')
-        @slope = str
+        @slope ||= str
       end
       
       # Helper to setup the graphing options for this client.
