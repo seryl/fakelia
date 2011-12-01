@@ -12,8 +12,8 @@ module Fakelia
       # @note units for the value, e.g. 'kb/sec'
       # 
       # @return The units displayed on the graph.
-      def units(str=nil)
-        @units ||= 'req/min' or str
+      def units(str='req/min')
+        @units ||= str
       end
       
       # The value type to use for the graph.
@@ -24,8 +24,8 @@ module Fakelia
       #   string, int8, uint8, int16, uint16, int32, uint32, float, double
       # 
       # @return The ganglia unit type.
-      def type(str=nil)
-        @type ||= 'uint8' or str
+      def type(str='unit8')
+        @type ||= str
       end
       
       # The maximum time in seconds between gmetric calls.

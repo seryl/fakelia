@@ -8,7 +8,7 @@ require 'json'
 # Long running ganglia client/forwarder for windows and OSX.
 module Fakelia
   # Gem Version
-  VERSION = '1.0.1'
+  VERSION = '1.0.2'
   
   # Empty module to fill with script modules
   module Scripts
