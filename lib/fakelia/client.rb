@@ -3,8 +3,8 @@ module Fakelia
   module Client
     extend ActiveSupport::Concern
     
-    # Class methods for the default Fakelia::Client.
-    module ClassMethods
+    # Instance methods for the default Fakelia::Client.
+    module InstanceMethods
       # The units string on the graph.
       # 
       # @param [ String ] str The units displayed on the graph.
@@ -70,7 +70,7 @@ module Fakelia
       # @return The graph options.
       def graph(name, &block)
         raise "Graph requires a name as the first parameter" if name.nil?
-        self.class_eval &block
+        instance_eval &block
         
         @graph_options = {}
         @graph_options.merge!({
@@ -90,8 +90,8 @@ module Fakelia
       # 
       # @params [ Hash ] options The options passed from the Fakelia server.
       def update_ganglia(options = {})
-        if self.methods.grep /update/
-          self.send_to_ganglia(self.update, options)
+        if methods.grep /update/
+          send_to_ganglia(update, options)
         else
           raise Exception, "The update method for #{self} requires the :update method to be defined."
         end

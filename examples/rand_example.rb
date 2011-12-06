@@ -1,14 +1,16 @@
 module Fakelia::Scripts  
-  module RandExample
+  class RandExample
     include Fakelia::Client
     
-    graph "rand_graph" do
-      units 'req/min'
-      type 'uint8'
+    def initialize
+      graph "rand_graph" do
+        units 'req/min'
+        type 'uint8'
+      end
     end
     
     # Send random data.
-    def self.update      
+    def update      
       rand(150)
     end
   end

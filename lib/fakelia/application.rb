@@ -1,5 +1,5 @@
 module Fakelia
-  # The 
+  # The generic fakelia app to run every module in your scripts folder.
   class Application
     # The default configuration parameters
     DEFAULT_CONFIGURATION = {
@@ -49,13 +49,18 @@ module Fakelia
       setup_script_modules
       
       EM.run do
+        @config.merge ({:spoof => @spoof})
+        @class_objects ||= {}
+        
         EM.add_periodic_timer(@config[:interval]) do
-          @script_modules.each do |m|
-            @config.merge ({:spoof => @spoof})
-            Fakelia::Scripts.const_get(m).send(:update_ganglia,
-              @config.select { |k, v|
-                [:hostname, :group, :gmond_host, :gmond_port, :spoof].include? k
-              })
+          @script_classes.each do |cls|
+            unless @class_objects.has_key? cls.name
+              @class_objects[cls] = cls.new(@config)
+            end
+            
+            @class_objects[cls].update_ganglia(@config.select { |k, v|
+              [:hostname, :group, :gmond_host, :gmond_port, :spoof].include? k
+            })
           end
         end
       end
@@ -65,7 +70,7 @@ module Fakelia
     # 
     # @example
     #   module Fakelia::Scripts  
-    #     module Example
+    #     class Example
     #       include Fakelia::Client
     #   
     #       graph "example graph" do
@@ -96,9 +101,9 @@ module Fakelia
         require scr
       end
       
-      @script_modules = Fakelia::Scripts.constants.select { |c|
-        Fakelia::Scripts.const_get(c).class == Module }
-      @script_modules
+      @script_classes = Fakelia::Scripts.constants.select { |c|
+        Fakelia::Scripts.const_get(c).class == Class }
+      @script_classes
     end
   end
 end
